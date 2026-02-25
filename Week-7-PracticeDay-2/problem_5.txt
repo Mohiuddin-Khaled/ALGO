@@ -1,0 +1,44 @@
+
+* If the frog can jump to (i+1) or (i−1)   
+   # Now the frog can move:
+        forward: i → i + 1
+        backward: i → i − 1 
+
+* Can we solve it with Dynamic Programming?
+    # No, not in the same simple DP way.
+
+* Why?
+# In the original problem:
+    # Movement is only forward.
+    # The state graph is a DAG (Directed Acyclic Graph).
+    # Each state depends only on smaller indices.
+    # So we can compute dp[i] in increasing order.
+
+But now:
+    # From i we can go to i+1 and i−1.
+    # This creates cycles (e.g., 2 → 3 → 2).
+    # Because of cycles, states depend on each other.
+    # There is no clear ordering to compute dp values.
+
+# Dynamic Programming works cleanly when there is:
+    # No cycles
+    # A clear dependency order
+
+* Can we solve it using Graphs?
+    # Yes
+
+* Graph Modeling
+    # Treat each stone as a node.
+    # Add edges:
+        i → i + 1
+        i → i − 1
+    # Edge weight = | h[i] − h[j] | 
+
+# Now the problem becomes:
+    # Find the minimum cost path from stone 1 to stone n.
+    # This is a shortest path problem on a weighted graph with cycles.
+
+* Solution:
+# Use Dijkstra’s Algorithm because:
+    # All edge weights are non-negative.
+    # The graph may contain cycles.

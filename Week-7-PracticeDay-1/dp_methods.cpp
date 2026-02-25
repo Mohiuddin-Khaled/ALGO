@@ -1,0 +1,26 @@
+/*
+# DP Steps
+    - Define state
+    - Identify the recursive equation from the smaller problems
+    - Define base case
+
+# Memoization-Method (recursive)
+================================
+fun (n, a, b, c, ......) {
+    / 1. handle base case
+
+    / 2. if current state is already solve, return the result
+
+    / 3. calculate the result from smaller sub-problems
+}
+
+# Tabulation-Method (iterative)
+===============================
+main() {
+    / 1. handle base case
+
+    / 2. loop through the states
+
+    / 3. calculate the answer from smaller sub-problems
+}
+*/
