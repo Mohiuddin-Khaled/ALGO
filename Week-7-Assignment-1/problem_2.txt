@@ -1,0 +1,55 @@
+1. Time and Space Complexity
+
+    dp[i][limit]
+    i → current index (0 → n)
+    limit → remaining capacity (0 → k)
+    Time Complexity: O(n * k)
+
+    dp[1005][1005] → O(n × k)
+    Maximum depth = O(n)
+    Space Complexity: O(n * k) + O(n) => O(n * k)
+
+
+2. Recursion Tree 
+    solve(0, 100)
+    │
+    ├── skip → solve(1, 100)
+    │   │
+    │   ├── skip → solve(2, 100)
+    │   │   ├── skip → solve(3, 100)
+    │   │   │   ├── skip → solve(4, 100)
+    │   │   │   │   ├── skip → solve(5, 100) = 0
+    │   │   │   │   └── take(40) → 40
+    │   │   │   │   result = 40
+    │   │   │   └── take(30) → 30 + solve(5, 70) = 30
+    │   │   │   result = max (30, 40) = 40
+    │   │   └── take(20) → 20 + solve(4, 80) = 20 + 40 = 60
+    │   │   result = max(40, 60) = 60
+    │   │
+    │   └── take(10) → 10 + solve(3, 90)
+    │       ├── best = 40
+    │       result = 50
+    │
+    │   result = 60
+    │
+    └── take(50) → 50 + solve(2, 50)
+        │
+        ├── skip → solve(3, 50)
+        │   ├── best = 40
+        │
+        └── take(20) → 20 + solve(4, 30) = 20
+        │
+        result = 50 + 40 = 90
+
+    final result = max(60, 90)
+
+
+3. DP Table 
+
+    |    State   | Skip | Take | Result |
+    | ---------- | ---- | ---- | ------ |
+    | dp[4][100] |  0   |  40  |  40    |
+    | dp[3][100] |  40  |  30  |  40    |
+    | dp[2][100] |  40  |  60  |  60    |
+    | dp[1][100] |  60  |  50  |  60    |
+    | dp[0][100] |  60  |  90  |  90    |

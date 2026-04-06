@@ -1,0 +1,47 @@
+1. Time and Space Complexity
+    Total rows = N = 2n - 1
+    Each row has at most n elements
+    total states ≈ O(n²)
+    Each state (i, j) is computed once due to memoization.
+    Time Complexity = O(n²) 
+
+    DP array:
+    dp[205][205]
+    complexity: O(n²)
+
+    Value storage:
+    vector<vector<int>> value
+    complexity: O(n²)
+
+    Recursion stack:
+    Max depth = N ≈ 2n
+    complexity: O(n)
+
+    Space Complexity: O(n²)
+
+2. Recursion Tree 
+                (0,0)
+               /     \
+          (1,0)     (1,1)
+          /   \     /   \
+      (2,0)(2,1)(2,1)(2,2)
+      ....................
+      .................... 
+
+3. DP Table 
+    dp[i][j] = maximum sum from (i,j) to bottom
+
+    dp[6][0] = 16
+    
+    dp[5][0] = 14 + max(16) = 30
+    dp[5][1] = 15 + max(16) = 31
+
+    dp[4][0] = 11 + max(30,31)
+    dp[4][1] = 12 + max(30,31)
+    dp[4][2] = 13 + max(31)
+
+    Upper Half:
+    dp[i][j] = value[i][j] + max(dp[i+1][j], dp[i+1][j+1])
+
+    Lower Half:
+    dp[i][j] = value[i][j] + max(dp[i+1][j], dp[i+1][j-1])

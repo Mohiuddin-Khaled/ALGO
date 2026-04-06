@@ -1,0 +1,35 @@
+1. Time and Space Complexity
+
+    Each state i is computed
+    Total states = N (≈ 100000)
+    Each state does O(1) work
+    
+    Time Complexity: O(N)
+    
+    Space Complexity: 
+    DP array: dp[N] → O(N)
+    Frequency array: cnt[N] → O(N)
+    Recursion stack: O(N)
+    
+    Space Complexity:   O(N)
+
+3. Recursion Tree 
+    solve(5)
+    ├── solve(4)
+    │   ├── solve(3)
+    │   │   ├── solve(2)
+    │   │   │   ├── solve(1)
+    │   │   │   └── solve(0)
+    │   │   └── solve(1)
+    │   └── solve(2)
+    └── solve(3)
+
+3. DP Table: 
+    | i | cnt[i] | points = i * cnt[i] | dp[i-2] + points | dp[i-1] | dp[i] |
+    | - | ------ | ------------------- | ---------------- | ------- | ----- |
+    | 0 |   0    |        0            |       —          |    —    | 0     |
+    | 1 |   0    |        0            |       —          |    0    | 0     |
+    | 2 |   0    |        0            |       0          |    0    | 0     |
+    | 3 |   2    |        6            |    0 + 6 = 6     |    0    | 6     |
+    | 4 |   1    |        4            |    0 + 4 = 4     |    6    | 6     |
+    | 5 |   2    |       10            |    6 + 10 = 16   |    6    | 16    |
